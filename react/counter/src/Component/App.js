@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App(title) {
   return (
     <div className="App">
-      <h1>Counter</h1>
+      <h1>{title.title}</h1>
     </div>
   );
 }
