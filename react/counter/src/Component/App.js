@@ -47,25 +47,25 @@ function App({ title }) {
   }
 
   function handleCLickMoreAll() {
-        // Copie du state
-        const countersCopy = [...counters];
-        countersCopy.forEach(counter => {
-          counter.value ++;
-        });
-        // Changement du state
-        setCounters(() => countersCopy);
+    // Copie du state
+    const countersCopy = [...counters];
+    countersCopy.forEach(counter => {
+      counter.value ++;
+    });
+    // Changement du state
+    setCounters(() => countersCopy);
   }
 
   return (
     <div className="App">
       <h1>{title}</h1>
+      <button onClick={handleCLickLessAll}>- tous</button>
+      <button onClick={handleCLickMoreAll}>+ tous</button>
       {counters.map((counter) => <Counter 
       key = { counter.id } 
       counter = { counter } 
       onCLickLess={handleCLickLess}
-      onCLickMore={handleClickMore}
-      onCLickLessAll={handleCLickLessAll}
-      onCLickMoreAll={handleCLickMoreAll} />)}
+      onCLickMore={handleClickMore} />)}
       {/* Appel du composant fonction Counter */}
     </div>
   );
