@@ -42,7 +42,7 @@ testPromise()
   });
 
   console.log(`Je suis en ligne 24`);
- */
+
   fetch("http://localhost:3000/tasks")
   .then(response => {
     console.log(`response.status`, response.status);
@@ -55,3 +55,56 @@ testPromise()
   .catch(error => {
     console.error("Erreur attrapée" + error);
   })
+   */
+
+/**
+ * Permet de récupérer une chaine de caractère (token) dans le cas favorable
+ * @returns Promise<string>
+ */
+function getToken() {
+  return new Promise((resolve, reject) => {
+    let random = Math.random();
+    setTimeout(() => {
+      if (random > 0.5) {
+        // Cas favorable
+        resolve("UI2RHuifzzef54+456");
+      } else if (random < 0.3 && random > 0) resolve("");
+      else reject("Problème de token");
+    }, 1000);
+  });
+}
+
+function getUsers(token) {
+  return new Promise((resolve, reject) => {
+    if (!token) {
+      reject(
+        "Vous devez donner un token valide pour récupérer les utilisateurs"
+      );
+    }
+    setTimeout(() => {
+      if (Math.random() > 0.5) {
+        // Cas favorable
+        resolve([
+          { name: "Bob", uid: 156 },
+          { name: "jiji", uid: 358 },
+        ]);
+      } else {
+        reject("Problème de récupération des utilisateurs");
+      }
+    }, 1000);
+  });
+}
+
+const result = getToken()
+  .then((token) => {
+    console.log(`J'ai bien reçu le token : `, token);
+    return getUsers(token);
+  })
+  .then((users) => {
+    console.log(`J'ai bien reçu les utilisateurs`, users);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+console.log(result);
+console.log(`Ici `);
