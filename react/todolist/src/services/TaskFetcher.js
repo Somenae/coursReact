@@ -31,7 +31,6 @@ export default class TaskFetcher {
             'Content-Type': 'application/json'
           },
           method: "PATCH",
-          //body: JSON.stringify({ "title": "Simon", "author": "Yvan" })
           body: JSON.stringify(propertyToPatch)
         })
         .then(function (res) {
